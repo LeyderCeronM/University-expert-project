@@ -1,9 +1,9 @@
 package prologconexion;
 
+import java.util.Map;
+
 import org.jpl7.Query;
 import org.jpl7.Term;
-
-import java.util.Map;
 
 public class ConexionProlog {
 
@@ -56,19 +56,19 @@ public class ConexionProlog {
     }
 
     public static void guardarRespuesta(
-        String pregunta,
-        String respuesta
-) {
+            String pregunta,
+            String respuesta
+    ) {
 
-    String consulta =
-            "assert(respuesta("
-            + pregunta +
-            "," +
-            respuesta +
-            "))";
+        String consulta =
+                "assert(respuesta("
+                + pregunta +
+                "," +
+                respuesta +
+                "))";
 
-    Query q = new Query(consulta);
+        Query q = new Query(consulta);
 
-    q.hasSolution();
-}
+        q.hasSolution();
+    }
 }
