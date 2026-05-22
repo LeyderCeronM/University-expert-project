@@ -44,58 +44,20 @@ public class VentanaPreguntas extends JFrame {
 
 
         // =====================================================
-        // LISTA DE PREGUNTAS
+        // LISTA DE PREGUNTAS DESDE PROLOG
         // =====================================================
 
-        preguntas = new ArrayList<>();
+        preguntas = ConexionProlog.obtenerPreguntas();
 
-        preguntas.add(new String[]{
-                "programacion",
-                "¿Te gusta programar?"
-        });
+        if(preguntas.isEmpty()) {
 
-        preguntas.add(new String[]{
-                "matematicas",
-                "¿Te gustan las matemáticas?"
-        });
+                JOptionPane.showMessageDialog(
+                        null,
+                        "No se pudieron cargar las preguntas desde Prolog"
+                );
 
-        preguntas.add(new String[]{
-                "tecnologia",
-                "¿Te interesa la tecnología?"
-        });
-        preguntas.add(new String[]{
-                "biologia",
-                "¿Te gusta la biología y el funcionamiento del cuerpo humano?"
-        });
-        preguntas.add(new String[]{
-                "debate",
-                "¿Te gusta debatir?"
-        });
-
-        preguntas.add(new String[]{
-                "historia",
-                "¿Te gusta la historia?"
-        });
-        preguntas.add(new String[]{
-                "salud",
-                "¿Te interesa diagnosticar enfermedades?"
-        });
-
-        preguntas.add(new String[]{
-                "creatividad",
-                "¿Eres creativo?"
-        });
-                preguntas.add(new String[]{
-                "salud",
-                "¿Te interesa la salud y ayudar a los pacientes?"
-        });
-
-        
-                preguntas.add(new String[]{
-                "dibujo",
-                "¿Te gusta dibujar?"
-        });
-
+                System.exit(0);
+        }
 
 
         // =====================================================
@@ -264,7 +226,9 @@ public class VentanaPreguntas extends JFrame {
 
 
         lblPregunta = new JLabel(
-                preguntas.get(indice)[1],
+                "<html><div style='text-align:center;'>"
+                + preguntas.get(indice)[1]
+                + "</div></html>",
                 SwingConstants.CENTER
         );
 
@@ -421,8 +385,10 @@ public class VentanaPreguntas extends JFrame {
         if(indice < preguntas.size()) {
 
             lblPregunta.setText(
-                    preguntas.get(indice)[1]
-            );
+                "<html><div style='text-align:center;'>"
+                + preguntas.get(indice)[1]
+                + "</div></html>"
+                );
 
 
 

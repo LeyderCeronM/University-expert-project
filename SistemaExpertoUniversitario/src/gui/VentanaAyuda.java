@@ -22,30 +22,19 @@ public class VentanaAyuda extends JFrame {
         // COLORES
         // =========================
 
-        Color fondo =
-                new Color(15,23,42);
+        Color fondo = new Color(15,23,42);
 
-        Color tarjeta =
-                new Color(30,41,59);
+        Color tarjeta = new Color(30,41,59);
 
-        Color texto =
-                Color.WHITE;
+        Color texto = Color.WHITE;
 
-        Color descripcion =
-                new Color(203,213,225);
+        Color descripcion = new Color(203,213,225);
 
-
-
-        JPanel panelPrincipal =
-                new JPanel(new BorderLayout());
+        JPanel panelPrincipal = new JPanel(new BorderLayout());
 
         panelPrincipal.setBackground(fondo);
 
-        panelPrincipal.setBorder(
-                new EmptyBorder(25,25,25,25)
-        );
-
-
+        panelPrincipal.setBorder( new EmptyBorder(25,25,25,25));
 
         // =========================
         // TITULO
@@ -57,8 +46,7 @@ public class VentanaAyuda extends JFrame {
                         SwingConstants.CENTER
                 );
 
-        titulo.setFont(
-                new Font("Segoe UI", Font.BOLD, 32)
+        titulo.setFont(new Font("Segoe UI", Font.BOLD, 32)
         );
 
         titulo.setForeground(texto);
@@ -95,6 +83,11 @@ public class VentanaAyuda extends JFrame {
 
 
         area.setText(
+                "En la pantalla de inicio encontrarás diferentes opciones:\n" +
+                "\"Iniciar Test\", que da comienzo a la prueba para descubrir tu\n" +
+                "carrera ideal; \"Ver Carreras\", que te permite explorar todas las\n" +
+                "opciones disponibles en modalidad de solo lectura; y \"Ayuda\",\n" +
+                "el cual te dirigirá a una guía práctica para navegar en el sistema.\n\n" +
 
                 "1. Presiona el boton 'Iniciar Test'.\n\n" +
 
@@ -110,13 +103,13 @@ public class VentanaAyuda extends JFrame {
                 "   ponderados y probabilidades de ingreso.\n\n" +
 
                 "7. Puedes explorar todas las carreras disponibles\n" +
-                "   desde el menu principal."
+                "   desde el menu principal.\n\n" +
+
+                "8. Se puede mirar las carreras que posiblemente le pueden \n" +
+                "gustar a las personas .\n\n" 
         );
 
-
-
-        JScrollPane scroll =
-                new JScrollPane(area);
+        JScrollPane scroll = new JScrollPane(area);
 
         scroll.setBorder(null);
 
@@ -126,45 +119,30 @@ public class VentanaAyuda extends JFrame {
         // BOTON VOLVER
         // =========================
 
-        JButton volver =
-                new JButton("Volver");
+        JButton volver = new JButton("Volver");
 
-        volver.setFont(
-                new Font("Segoe UI", Font.BOLD, 18)
-        );
+        volver.setFont(new Font("Segoe UI", Font.BOLD, 18));
 
-        volver.setBackground(
-                new Color(59,130,246)
-        );
+        volver.setBackground(new Color(59,130,246));
 
         volver.setForeground(Color.WHITE);
 
         volver.setFocusPainted(false);
 
-        volver.setPreferredSize(
-                new Dimension(200,50)
-        );
+        volver.setPreferredSize(new Dimension(200,50));
 
 
 
         volver.addActionListener(e -> {
 
             new VentanaInicio();
-
             dispose();
-
         });
 
 
-
-        JPanel panelBoton =
-                new JPanel();
-
+        JPanel panelBoton = new JPanel();
         panelBoton.setBackground(fondo);
-
         panelBoton.add(volver);
-
-
 
         // =========================
         // AGREGAR TODO

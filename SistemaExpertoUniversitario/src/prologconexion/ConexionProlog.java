@@ -1,5 +1,6 @@
 package prologconexion;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.jpl7.Query;
@@ -22,10 +23,39 @@ public class ConexionProlog {
         }
     }
 
+    // =====================================================
+    // OBTENER PREGUNTAS DESDE PROLOG
+    // =====================================================
+
+    public static ArrayList<String[]> obtenerPreguntas() {
+
+        ArrayList<String[]> lista = new ArrayList<>();
+
+        Query query = new Query("pregunta(X,Y)");
+
+        while(query.hasMoreSolutions()) {
+
+            Map<String, Term> solucion = query.nextSolution();
+
+            String clave = solucion.get("X").toString();
+
+            String pregunta =
+                    solucion.get("Y")
+                            .toString()
+                            .replace("'", "");
+
+            lista.add(new String[]{
+                    clave,
+                    pregunta
+            });
+        }
+
+        return lista;
+    }
+
     public static void enviarRespuesta(String pregunta) {
 
-        String consulta =
-                "assert(respuesta(" + pregunta + ",si))";
+        String consulta = "assert(respuesta(" + pregunta + ",si))";
 
         Query q = new Query(consulta);
 
@@ -71,4 +101,49 @@ public class ConexionProlog {
 
         q.hasSolution();
     }
+
+
+    // =====================================================
+// OBTENER CARRERAS DESDE PROLOG
+// =====================================================
+
+public static ArrayList<String[]> obtenerCarreras() {
+
+    ArrayList<String[]> lista =
+            new ArrayList<>();
+
+    Query query = new Query(
+            "carrera_info(Id,Nombre,Descripcion,Imagen)"
+    );
+
+    while(query.hasMoreSolutions()) {
+
+        Map<String, Term> solucion =
+                query.nextSolution();
+
+        String nombre =
+                solucion.get("Nombre")
+                        .toString()
+                        .replace("'", "");
+
+        String descripcion =
+                solucion.get("Descripcion")
+                        .toString()
+                        .replace("'", "");
+
+        String imagen =
+                solucion.get("Imagen")
+                        .toString()
+                        .replace("'", "");
+
+        lista.add(new String[]{
+
+                nombre,
+                descripcion,
+                imagen
+        });
+    }
+
+    return lista;
+}
 }

@@ -2,6 +2,9 @@ package gui;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
+import prologconexion.ConexionProlog;
+
 import java.awt.*;
 
 public class VentanaCarreras extends JFrame {
@@ -64,10 +67,11 @@ public class VentanaCarreras extends JFrame {
         // TITULO
         // =========================
 
-        JLabel titulo = new JLabel(
-                "CARRERAS UNIVERSITARIAS",
-                SwingConstants.CENTER
-        );
+        JLabel titulo =
+                new JLabel(
+                        "CARRERAS UNIVERSITARIAS",
+                        SwingConstants.CENTER
+                );
 
         titulo.setFont(
                 new Font("Segoe UI", Font.BOLD, 32)
@@ -77,10 +81,11 @@ public class VentanaCarreras extends JFrame {
 
 
 
-        JLabel descripcion = new JLabel(
-                "Explora las carreras disponibles en el sistema",
-                SwingConstants.CENTER
-        );
+        JLabel descripcion =
+                new JLabel(
+                        "Explora las carreras disponibles en el sistema",
+                        SwingConstants.CENTER
+                );
 
         descripcion.setFont(
                 new Font("Segoe UI", Font.PLAIN, 18)
@@ -90,11 +95,13 @@ public class VentanaCarreras extends JFrame {
 
 
 
-        JPanel panelTitulo =
-                new JPanel();
+        JPanel panelTitulo = new JPanel();
 
         panelTitulo.setLayout(
-                new BoxLayout(panelTitulo, BoxLayout.Y_AXIS)
+                new BoxLayout(
+                        panelTitulo,
+                        BoxLayout.Y_AXIS
+                )
         );
 
         panelTitulo.setOpaque(false);
@@ -115,8 +122,7 @@ public class VentanaCarreras extends JFrame {
         // PANEL CARRERAS
         // =========================
 
-        JPanel panelCarreras =
-                new JPanel();
+        JPanel panelCarreras = new JPanel();
 
         panelCarreras.setLayout(
                 new GridLayout(0,2,20,20)
@@ -131,148 +137,32 @@ public class VentanaCarreras extends JFrame {
 
 
         // =========================
-        // AGREGAR CARRERAS
+        // AGREGAR CARRERAS DESDE PROLOG
         // =========================
 
-        panelCarreras.add(
-                crearPanelCarrera(
-                        "Ingenieria de Sistemas",
-                        "Programacion, software, redes y tecnologia.",
-                        "resources/sistemas.png",
-                        tarjeta,
-                        texto,
-                        subtitulo
-                )
-        );
-        panelCarreras.add(
-                crearPanelCarrera(
-                        "Medicina",
-                        "Cuidado de la salud, anatomia y enfermedades.",
-                        "resources/medicina.png",
-                        tarjeta,
-                        texto,
-                        subtitulo
-                )
-        );
-        panelCarreras.add(
-                crearPanelCarrera(
-                        "Arquitectura",
-                        "Diseño, construccion y urbanismo.",
-                        "resources/arquitectura.png",
-                        tarjeta,
-                        texto,
-                        subtitulo
-                )
-        );
-        panelCarreras.add(
-                crearPanelCarrera(
-                        "Psicologia",
-                        "Comportamiento humano, mente y emociones.",
-                        "resources/psicologia.png",
-                        tarjeta,
-                        texto,
-                        subtitulo
-                )
-        );
-        panelCarreras.add(
-                crearPanelCarrera(
-                        "Ingenieria Civil",
-                        "Estructuras, materiales y construccion.",
-                        "resources/civil.png",
-                        tarjeta,
-                        texto,
-                        subtitulo
-                )
-        );
-        panelCarreras.add(
-                crearPanelCarrera(
-                        "Comunicacion",
-                        "Medios, periodismo y publicidad.",
-                        "resources/comunicacion.png",
-                        tarjeta,
-                        texto,
-                        subtitulo
-                )
-        );
-        panelCarreras.add(
-                crearPanelCarrera(
-                        "Enfermeria",
-                        "Cuidado de pacientes, salud comunitaria.",
-                        "resources/enfermeria.png",
-                        tarjeta,
-                        texto,
-                        subtitulo
-                )
-        );
+        for(String[] carrera :
+                ConexionProlog.obtenerCarreras()) {
+
+            panelCarreras.add(
+
+                    crearPanelCarrera(
+
+                            carrera[0],
+                            carrera[1],
+                            carrera[2],
+
+                            tarjeta,
+                            texto,
+                            subtitulo
+                    )
+            );
+        }
 
 
-        panelCarreras.add(
-                crearPanelCarrera(
-                        "Derecho",
-                        "Leyes, argumentacion y solucion de conflictos.",
-                        "resources/derecho.png",
-                        tarjeta,
-                        texto,
-                        subtitulo
-                )
-        );
 
-        panelCarreras.add(
-                crearPanelCarrera(
-                        "Diseño Grafico",
-                        "Creatividad, dibujo y diseño visual.",
-                        "resources/diseno.png",
-                        tarjeta,
-                        texto,
-                        subtitulo
-                )
-        );
-
-        panelCarreras.add(
-                crearPanelCarrera(
-                        "Turismo",
-                        "Idiomas, viajes y cultura internacional.",
-                        "resources/turismo.png",
-                        tarjeta,
-                        texto,
-                        subtitulo
-                )
-        );
-
-        panelCarreras.add(
-                crearPanelCarrera(
-                        "Contabilidad",
-                        "Finanzas, auditorias y bancos.",
-                        "resources/contabilidad.png",
-                        tarjeta,
-                        texto,
-                        subtitulo
-                )
-        );
-
-        panelCarreras.add(
-                crearPanelCarrera(
-                        "Administracion",
-                        "Liderazgo y gestion empresarial.",
-                        "resources/administracion.png",
-                        tarjeta,
-                        texto,
-                        subtitulo
-                )
-        );
-
-        panelCarreras.add(
-                crearPanelCarrera(
-                        "Pedagogia",
-                        "Educacion y modelos de enseñanza.",
-                        "resources/pedagogia.png",
-                        tarjeta,
-                        texto,
-                        subtitulo
-                )
-        );
-
-
+        // =========================
+        // SCROLL
+        // =========================
 
         JScrollPane scroll =
                 new JScrollPane(panelCarreras);
@@ -320,8 +210,7 @@ public class VentanaCarreras extends JFrame {
 
 
 
-        JPanel panelBoton =
-                new JPanel();
+        JPanel panelBoton = new JPanel();
 
         panelBoton.setBackground(fondo);
 
@@ -333,11 +222,22 @@ public class VentanaCarreras extends JFrame {
         // AGREGAR TODO
         // =========================
 
-        panelPrincipal.add(panelTitulo, BorderLayout.NORTH);
+        panelPrincipal.add(
+                panelTitulo,
+                BorderLayout.NORTH
+        );
 
-        panelPrincipal.add(scroll, BorderLayout.CENTER);
+        panelPrincipal.add(
+                scroll,
+                BorderLayout.CENTER
+        );
 
-        panelPrincipal.add(panelBoton, BorderLayout.SOUTH);
+        panelPrincipal.add(
+                panelBoton,
+                BorderLayout.SOUTH
+        );
+
+
 
         add(panelPrincipal);
 
@@ -359,10 +259,9 @@ public class VentanaCarreras extends JFrame {
             Color texto,
             Color descripcionColor
 
-    ) {
+    ){
 
-        JPanel panel =
-                new JPanel();
+        JPanel panel = new JPanel();
 
         panel.setLayout(
                 new BorderLayout(10,10)
@@ -446,13 +345,20 @@ public class VentanaCarreras extends JFrame {
         // AGREGAR COMPONENTES
         // =========================
 
-        panel.add(lblNombre, BorderLayout.NORTH);
+        panel.add(
+                lblNombre,
+                BorderLayout.NORTH
+        );
 
-        panel.add(lblImagen, BorderLayout.CENTER);
+        panel.add(
+                lblImagen,
+                BorderLayout.CENTER
+        );
 
-        panel.add(txtDescripcion, BorderLayout.SOUTH);
-
-
+        panel.add(
+                txtDescripcion,
+                BorderLayout.SOUTH
+        );
 
         return panel;
     }

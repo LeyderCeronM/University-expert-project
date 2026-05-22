@@ -1,19 +1,23 @@
-pregunta(programacion,'Te gusta programar?').
+% =========================
+% PREGUNTAS
+% =========================
 
-pregunta(matematicas,'Te gustan las matematicas?').
+pregunta(programacion,'¿Te gusta programar?').
+pregunta(matematicas,'¿Te gustan las matematicas?').
+pregunta(tecnologia,'¿Te interesa la tecnologia?').
+pregunta(biologia,'¿Te gusta la biologia y el funcionamiento del cuerpo humano?').
+pregunta(debate,'¿Te gusta debatir?').
+pregunta(historia,'¿Te gusta la historia?').
+pregunta(diagnostico,'¿Te interesa diagnosticar enfermedades?').
+pregunta(creatividad,'¿Eres creativo?').
+pregunta(pacientes,'¿Te interesa la salud y ayudar a los pacientes?').
+pregunta(dibujo,'¿Te gusta dibujar?').
 
-pregunta(tecnologia,'Te interesan temas sobre tecnologia?').
+% =========================
+% RESPUESTAS DINAMICAS
+% =========================
 
-pregunta(computadoras,'Tienes facilidad para usar computadoras?').
+:- dynamic respuesta/2.
 
-pregunta(creatividad,'Eres creativo?').
-
-pregunta(dibujo,'Eres bueno dibujando?').
-
-pregunta(historia,'Te gusta la historia?').
-
-pregunta(debate,'Te gusta debatir?').
-
-pregunta(idiomas,'Te gustan los idiomas?').
-
-pregunta(viajes,'Te gusta viajar?').
+guardar_respuesta(Pregunta,Respuesta) :-
+    assertz(respuesta(Pregunta,Respuesta)).
